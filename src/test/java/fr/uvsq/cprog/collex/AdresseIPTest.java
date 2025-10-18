@@ -42,4 +42,36 @@ public class AdresseIPTest {
     assertNotEquals(ip1, ip3);
     assertNotEquals(ip1.hashCode(), ip3.hashCode());
   }
+  
+  @Test
+  public void testCompareTo_equal() {
+    AdresseIP ip1 = new AdresseIP("192.168.1.1");
+    AdresseIP ip2 = new AdresseIP("192.168.1.1");
+    assertEquals(0, ip1.compareTo(ip2));
+  }
+
+  @Test
+  public void testCompareTo_lessThan() {
+    AdresseIP ip1 = new AdresseIP("10.0.0.1");
+    AdresseIP ip2 = new AdresseIP("10.0.0.2");
+    assertTrue(ip1.compareTo(ip2) < 0);
+  }
+
+  @Test
+  public void testCompareTo_greaterThan() {
+    AdresseIP ip1 = new AdresseIP("192.168.1.5");
+    AdresseIP ip2 = new AdresseIP("192.168.1.2");
+    assertTrue(ip1.compareTo(ip2) > 0);
+  }
+
+  @Test
+  public void testCompareTo_differentOctets() {
+    AdresseIP ip1 = new AdresseIP("10.1.0.1");
+    AdresseIP ip2 = new AdresseIP("10.2.0.1");
+    assertTrue(ip1.compareTo(ip2) < 0);
+
+    AdresseIP ip3 = new AdresseIP("11.0.0.1");
+    AdresseIP ip4 = new AdresseIP("10.255.255.255");
+    assertTrue(ip3.compareTo(ip4) > 0);
+  }
 }

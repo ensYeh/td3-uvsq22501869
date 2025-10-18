@@ -2,7 +2,7 @@ package fr.uvsq.cprog.collex;
 
 import java.util.Objects;
 
-public class AdresseIP {
+public class AdresseIP implements Comparable<AdresseIP> {
   private final String ip;
 
   public AdresseIP(String ipDonnee) {
@@ -62,6 +62,22 @@ public class AdresseIP {
   @Override
   public String toString() {
     return ip;
+  }
+
+  @Override
+  public int compareTo(AdresseIP o) {
+    String[] thisParts = this.ip.split("\\.");
+    String[] otherParts = o.ip.split("\\.");
+
+    for (int i = 0; i < 4; i++) {
+      int thisOctet = Integer.parseInt(thisParts[i]);
+      int otherOctet = Integer.parseInt(otherParts[i]);
+      int cmp = Integer.compare(thisOctet, otherOctet);
+      if (cmp != 0) {
+        return cmp;
+      }
+    }
+    return 0;
   }
 
 }
