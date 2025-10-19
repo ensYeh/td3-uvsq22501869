@@ -6,7 +6,7 @@ public class CommandeQuit implements Commande{
   @Override
   public void execute() {
     System.out.println("Fin du programme.");
-    throw new ExitException(); // Uniquement pour faire le test.
-    // System.exit(0);
+    //throw new ExitException(); // Uniquement pour faire le test.
+    System.exit(0);
   }
 }
