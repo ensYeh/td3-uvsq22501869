@@ -30,6 +30,12 @@ public class Dns {
     chargerBase();
   }
 
+  public Dns(Path fichierBase) throws IOException {
+    this.fichierBase = fichierBase;
+    items.clear();
+    chargerBase();
+  }
+
   private void chargerBase() throws IOException {
     if (!Files.exists(fichierBase)) {
       Files.createFile(fichierBase);
